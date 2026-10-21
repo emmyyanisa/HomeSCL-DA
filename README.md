@@ -12,6 +12,12 @@ The training loss has three terms.
 
 The held-out home's labels are never used for training or for model selection. The final-epoch model is the one tested.
 
+## Architecture
+
+Pipeline for acoustic activity recognition using CLAP embeddings and HomeSCL-DA.
+
+![HomeSCL-DA architecture](https://github.com/emmyyanisa/HomeSCL-DA/blob/main/flow.png)
+
 ## Repository structure
 
 ```
@@ -46,9 +52,9 @@ One folder per home. Paths in the config are relative to the directory you run `
 
 ```
 data/home_1/
-├── labeled.tsv        # required
-├── unlabeled.tsv      # optional, domain branch only
-├── batch_index.tsv    # optional
+├── labeled.tsv
+├── unlabeled.tsv
+├── batch_index.tsv
 └── features/
     ├── batch-0        # torch.save({"tensor": array [N, 1024]})
     ├── batch-1
