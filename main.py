@@ -3,6 +3,7 @@
 Example:
     python main.py --config configs/default.json
     python main.py --config configs/default.json --heldout home_6 --ablation cdan_e
+    python main.py --no-da        # HomeSCL without domain adaptation (SupCon only)
 """
 import argparse
 import json
@@ -35,15 +36,22 @@ def parse_args():
     p.add_argument("--device", help="auto | cpu | cuda | cuda:0 ...")
     p.add_argument("--no-unlabeled", dest="use_unlabeled_target", action="store_const", const=False)
     p.add_argument("--no-plots", dest="save_plots", action="store_const", const=False)
+    p.add_argument("--no-da", dest="no_da", action="store_true",
+                   help="HomeSCL without domain adaptation: SupCon kept, domain branch off")
     return p.parse_args()
 
 
 def main():
     warnings.filterwarnings("ignore")
     args = vars(parse_args())
+    no_da = args.pop("no_da")
+    if no_da and args.get("ablation") not in (None, "baseline"):
+        raise SystemExit("--no-da turns the domain branch off; do not combine it with --ablation.")
     cfg = load_config(args.pop("config"), args)
-
-    out_root = Path(cfg.output_dir) / cfg.ablation
+    if no_da:
+        cfg.ablation = "baseline"       # no discriminator, no target audio; SupCon unchanged
+    name = "homescl_no_da" if no_da else cfg.ablation
+    out_root = Path(cfg.output_dir) / name
     out_root.mkdir(parents=True, exist_ok=True)
     (out_root / "config_used.json").write_text(json.dumps(cfg.to_dict(), indent=2))
 
@@ -60,11 +68,12 @@ def main():
             if h["name"] in folds:
                 unlabeled[h["name"]] = load_unlabeled_windows(h, home_id, cfg)
 
-    results = [run_fold(cfg, name, segments, unlabeled, store) for name in folds]
+    results = [run_fold(cfg, home, segments, unlabeled, store, out_root) for home in folds]
 
     summary = pd.DataFrame(results)
     summary.to_csv(out_root / "summary.csv", index=False)
-    print(f"\n{'=' * 50}\nLOHO summary  ablation={cfg.ablation}\n{'=' * 50}")
+    title = "HomeSCL without DA" if no_da else f"ablation={cfg.ablation}"
+    print(f"\n{'=' * 50}\nLOHO summary  {title}\n{'=' * 50}")
     for r in results:
         print(f"{r['heldout']:<32}{r['macro_f1']:>9.4f}")
     print(f"{'MEAN':<32}{np.mean(summary['macro_f1']):>9.4f}")
