@@ -50,6 +50,7 @@ class Config:
     domain_mode: str = "multi_source_target"
     use_unlabeled_target: bool = True
     domain_hidden: int = 64
+    domain_dropout: float = 0.3                  # discriminator dropout (CDA script used 0.5)
     domain_lambda_max: float = 1.0
     domain_lambda_cap: float = 0.2
     domain_warmup_epochs: int = 5
@@ -59,6 +60,7 @@ class Config:
     domain_window_min_len: int = 5
 
     # Selective cross-home supervised contrastive branch
+    use_supcon: bool = True                      # False = no projector, no selection, no SupCon
     supcon_start_epoch: int = 11
     supcon_weight: float = 0.2
     supcon_temperature: float = 0.10
@@ -124,14 +126,15 @@ class Config:
         return asdict(self)
 
 
-def load_config(path, overrides=None):
+def load_config(path, overrides=None, cls=Config):
+    """Read a JSON config into ``cls`` (Config or a method-specific subclass)."""
     with open(path, encoding="utf-8") as f:
         raw = json.load(f)
-    known = {f.name for f in fields(Config)}
+    known = {f.name for f in fields(cls)}
     unknown = sorted(k for k in raw if k not in known and not k.startswith("_"))
     if unknown:
         raise KeyError(f"Unknown config keys: {unknown}")
-    cfg = Config(**{k: v for k, v in raw.items() if k in known})
+    cfg = cls(**{k: v for k, v in raw.items() if k in known})
     for key, value in (overrides or {}).items():
         if value is not None:
             setattr(cfg, key, value)

@@ -137,14 +137,16 @@ def train_one_epoch(model, disc, loader, optimizer, cw, cfg,
 
 
 @torch.no_grad()
-def evaluate(model, loader, cw, cfg):
+def evaluate(model, loader, cw, cfg, loss_fn=None):
+    """loss_fn(logits, labels) overrides the default per-sample weighted CE."""
     device = cfg.torch_device
     model.eval()
     preds, labels, losses = [], [], []
     for x, y, mask, _ in loader:
         x, y, mask = x.to(device), y.to(device), mask.to(device)
         logits, _ = model(x, mask)
-        losses.append(weighted_ce(logits, y, cw).item())
+        loss = loss_fn(logits, y) if loss_fn is not None else weighted_ce(logits, y, cw)
+        losses.append(loss.item())
         preds.append(logits.argmax(-1).cpu())
         labels.append(y.cpu())
     if not labels:
@@ -154,9 +156,10 @@ def evaluate(model, loader, cw, cfg):
     return float(np.nanmean(losses)), f1, pred, true
 
 
-def run_fold(cfg, heldout, segments, unlabeled, store):
+def run_fold(cfg, heldout, segments, unlabeled, store, out_root=None):
     source_names = [h["name"] for h in cfg.homes if h["name"] != heldout]
-    out_dir = Path(cfg.output_dir) / cfg.ablation / f"heldout_{heldout}"
+    out_root = Path(out_root) if out_root is not None else Path(cfg.output_dir) / cfg.ablation
+    out_dir = out_root / f"heldout_{heldout}"
     out_dir.mkdir(parents=True, exist_ok=True)
     device = cfg.torch_device
     print(f"\n{'=' * 70}\nLOHO fold  held-out: {heldout}\nsource homes: {source_names}\n{'=' * 70}")
@@ -212,7 +215,7 @@ def run_fold(cfg, heldout, segments, unlabeled, store):
     supcon_iter = None
     print(f"\n{'ep':>4} {'train':>8} {'held':>8} {'F1':>7}  details")
     for epoch in range(1, cfg.epochs + 1):
-        if epoch == cfg.supcon_start_epoch and supcon_iter is None:
+        if cfg.use_supcon and epoch == cfg.supcon_start_epoch and supcon_iter is None:
             print(f"  [select] scoring source segments with the epoch-{epoch - 1} model")
             selected, audit = select_segments(model, source, store, cfg)
             audit.to_csv(out_dir / "selection_audit.csv", index=False)

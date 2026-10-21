@@ -180,8 +180,9 @@ class FeatureStore:
             raise FileNotFoundError(path)
         obj = torch.load(path, map_location="cpu", weights_only=False)
         arr = obj["tensor"] if isinstance(obj, dict) else obj
+        # Keep the stored dtype: datasets cast to float32 per item, and ADASYN
+        # averages in the native dtype first, exactly like the original scripts.
         arr = arr.numpy() if torch.is_tensor(arr) else np.asarray(arr)
-        arr = arr.astype(np.float32, copy=False)
         self._cache[key] = arr
         if len(self._cache) > self.cache_size:
             self._cache.popitem(last=False)
