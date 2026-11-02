@@ -11,7 +11,7 @@ The training loss has three terms.
 - Cross-home SupCon loss.
 
 The held-out home's labels are never used for training or for model selection. The final-epoch model is the one tested.
-
+![description](https://github.com/emmyyanisa/HomeSCL-DA/blob/main/flow.png)
 ## Repository structure
 
 ```
