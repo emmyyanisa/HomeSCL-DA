@@ -2,45 +2,45 @@
   "homes": [
     {
       "name": "home_1",
-      "labeled_tsv": "data/home_1/labeled.tsv",
-      "unlabeled_tsv": "data/home_1/unlabeled.tsv",
-      "batch_index_tsv": "data/home_1/batch_index.tsv",
-      "feature_dir": "data/home_1/features"
+      "labeled_tsv": "dataset/metadata/home1_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home1_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home1.tsv",
+      "feature_dir": "database-home1.db"
     },
     {
       "name": "home_2",
-      "labeled_tsv": "data/home_2/labeled.tsv",
-      "unlabeled_tsv": "data/home_2/unlabeled.tsv",
-      "batch_index_tsv": "data/home_2/batch_index.tsv",
-      "feature_dir": "data/home_2/features"
+      "labeled_tsv": "dataset/metadata/home2_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home2_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home2.tsv",
+      "feature_dir": "database-home2.db"
     },
     {
       "name": "home_3",
-      "labeled_tsv": "data/home_3/labeled.tsv",
-      "unlabeled_tsv": "data/home_3/unlabeled.tsv",
-      "batch_index_tsv": "data/home_3/batch_index.tsv",
-      "feature_dir": "data/home_3/features"
+      "labeled_tsv": "dataset/metadata/home3_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home3_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home3.tsv",
+      "feature_dir": "database-home3.db"
     },
     {
       "name": "home_4",
-      "labeled_tsv": "data/home_4/labeled.tsv",
-      "unlabeled_tsv": "data/home_4/unlabeled.tsv",
-      "batch_index_tsv": "data/home_4/batch_index.tsv",
-      "feature_dir": "data/home_4/features"
+      "labeled_tsv": "dataset/metadata/home4_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home4_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home4.tsv",
+      "feature_dir": "database-home4.db"
     },
     {
       "name": "home_5",
-      "labeled_tsv": "data/home_5/labeled.tsv",
-      "unlabeled_tsv": "data/home_5/unlabeled.tsv",
-      "batch_index_tsv": "data/home_5/batch_index.tsv",
-      "feature_dir": "data/home_5/features"
+      "labeled_tsv": "dataset/metadata/home5_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home5_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home5.tsv",
+      "feature_dir": "database-home5.db"
     },
     {
       "name": "home_6",
-      "labeled_tsv": "data/home_6/labeled.tsv",
-      "unlabeled_tsv": "data/home_6/unlabeled.tsv",
-      "batch_index_tsv": "data/home_6/batch_index.tsv",
-      "feature_dir": "data/home_6/features"
+      "labeled_tsv": "dataset/metadata/home6_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home6_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home6.tsv",
+      "feature_dir": "database-home6.db"
     }
   ],
   "classes": [
