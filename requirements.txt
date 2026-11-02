@@ -1,6 +1,41 @@
-torch>=2.0
-numpy>=1.22
-pandas>=1.4
-scikit-learn>=1.1
-imbalanced-learn>=0.10
-matplotlib>=3.5  # optional, plots only
+# torch and numpy MUST come from conda (MKL numpy + conda's CUDA build of torch);
+# pip builds give slightly different numbers. Install in this order:
+#
+#   conda create -n HomeSCL-DA python=3.8.20 -y
+#   conda activate HomeSCL-DA
+#   conda install numpy=1.24.3 mkl -y
+#   conda install pytorch==2.4.1 pytorch-cuda=12.1 -c pytorch -c nvidia -y
+#   python -m pip install -r requirements-repro.txt
+#
+# Check (torch must NOT end in +cu121):
+#   python -c "import torch, numpy; print(torch.__version__, numpy.__version__)"
+#   -> 2.4.1 1.24.3
+
+# --- used by the code ---
+pandas==2.0.3
+scikit-learn==1.3.2
+imbalanced-learn==0.12.4
+matplotlib==3.7.2
+seaborn==0.13.2
+
+# --- scikit-learn / imbalanced-learn ---
+scipy==1.10.1
+joblib==1.4.2
+threadpoolctl==3.5.0
+
+# --- pandas ---
+python-dateutil==2.9.0.post0
+pytz==2024.1
+tzdata==2025.2
+six==1.16.0
+
+# --- matplotlib ---
+contourpy==1.0.5
+cycler==0.11.0
+fonttools==4.51.0
+kiwisolver==1.4.4
+packaging==24.1
+pillow==10.4.0
+pyparsing==3.0.9
+importlib_resources==6.4.0
+zipp==3.20.2

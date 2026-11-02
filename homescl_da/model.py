@@ -35,11 +35,13 @@ class MLPBiGRU(nn.Module):
             dropout=cfg.dropout if cfg.gru_layers > 1 else 0.0,
         )
         self.classifier = nn.Linear(cfg.feat_dim, cfg.n_classes)
+        # Built only when SupCon is used, so models without SupCon have exactly
+        # the parameters (and random initialisation) of the original scripts.
         self.projector = nn.Sequential(
             nn.Linear(cfg.feat_dim, cfg.feat_dim),
             nn.ReLU(),
             nn.Linear(cfg.feat_dim, cfg.supcon_proj_dim),
-        )
+        ) if cfg.use_supcon else None
 
     def forward(self, x, mask=None):
         if mask is None:
@@ -68,11 +70,11 @@ def grad_reverse(x, lambd):
 
 
 class DomainDiscriminator(nn.Module):
-    def __init__(self, in_dim, n_domains, hidden=64):
+    def __init__(self, in_dim, n_domains, hidden=64, dropout=0.3):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Linear(in_dim, hidden), nn.ReLU(), nn.Dropout(0.3),
-            nn.Linear(hidden, hidden), nn.ReLU(), nn.Dropout(0.3),
+            nn.Linear(in_dim, hidden), nn.ReLU(), nn.Dropout(dropout),
+            nn.Linear(hidden, hidden), nn.ReLU(), nn.Dropout(dropout),
             nn.Linear(hidden, n_domains),
         )
 
@@ -84,7 +86,7 @@ def build_discriminator(cfg, n_domains):
     if cfg.ablation == "baseline":
         return None
     in_dim = cfg.feat_dim if cfg.ablation == "dann" else cfg.feat_dim * cfg.n_classes
-    return DomainDiscriminator(in_dim, n_domains, cfg.domain_hidden)
+    return DomainDiscriminator(in_dim, n_domains, cfg.domain_hidden, cfg.domain_dropout)
 
 
 def domain_input(feat, probs, ablation):
