@@ -1,53 +1,54 @@
 {
+  "_note": "= run_train_test_5_4_CAT_episode_clean.py",
   "homes": [
     {
       "name": "home_1",
       "labeled_tsv": "dataset/metadata/home1_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home1_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home1.tsv",
-      "feature_dir": "database-home1.db"
+      "feature_dir": "dataset/data/database-home1.db"
     },
     {
       "name": "home_2",
       "labeled_tsv": "dataset/metadata/home2_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home2_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home2.tsv",
-      "feature_dir": "database-home2.db"
+      "feature_dir": "dataset/data/database-home2.db"
     },
     {
       "name": "home_3",
       "labeled_tsv": "dataset/metadata/home3_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home3_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home3.tsv",
-      "feature_dir": "database-home3.db"
+      "feature_dir": "dataset/data/database-home3.db"
     },
     {
       "name": "home_4",
       "labeled_tsv": "dataset/metadata/home4_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home4_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home4.tsv",
-      "feature_dir": "database-home4.db"
+      "feature_dir": "dataset/data/database-home4.db"
     },
     {
       "name": "home_5",
       "labeled_tsv": "dataset/metadata/home5_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home5_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home5.tsv",
-      "feature_dir": "database-home5.db"
+      "feature_dir": "dataset/data/database-home5.db"
     },
     {
       "name": "home_6",
       "labeled_tsv": "dataset/metadata/home6_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home6_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home6.tsv",
-      "feature_dir": "database-home6.db"
+      "feature_dir": "dataset/data/database-home6.db"
     }
   ],
   "heldout": null,
   "output_dir": "outputs",
   "num_workers": 16,
   "domain_mode": "multi_source_target",
-  "seed": 189,
+  "seed": 42,
   "epochs": 50,
   "lr": 0.001,
   "batch_size": 64,
