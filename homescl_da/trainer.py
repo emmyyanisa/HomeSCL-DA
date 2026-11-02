@@ -211,9 +211,9 @@ def run_fold(cfg, heldout, segments, unlabeled, store, out_root=None):
         print(f"  domain chance accuracy ~ {1.0 / n_domains:.3f}")
 
     history = {k: [] for k in ("train_loss", "ce", "domain", "supcon", "domain_acc",
-                               "heldout_loss", "heldout_f1")}
+                               "heldout_f1")}
     supcon_iter = None
-    print(f"\n{'ep':>4} {'train':>8} {'held':>8} {'F1':>7}  details")
+    print(f"\n{'ep':>4} {'train':>8} {'F1':>7}  details")
     for epoch in range(1, cfg.epochs + 1):
         if cfg.use_supcon and epoch == cfg.supcon_start_epoch and supcon_iter is None:
             print(f"  [select] scoring source segments with the epoch-{epoch - 1} model")
@@ -226,22 +226,25 @@ def run_fold(cfg, heldout, segments, unlabeled, store, out_root=None):
         tr = train_one_epoch(model, disc, train_loader, optimizer, cw, cfg,
                              lam_d, domain_iter, lam_s, supcon_iter)
 
+        # The held-out home is only tested, never used for validation. This call
+        # only reports the F1 trend; it is kept because it advances the shared
+        # loader generator exactly as the original scripts did.
         if cfg.track_heldout:
-            held_loss, held_f1, _, _ = evaluate(model, heldout_loader, cw, cfg)
+            _, held_f1, _, _ = evaluate(model, heldout_loader, cw, cfg)
         else:
-            held_loss, held_f1 = float("nan"), float("nan")
+            held_f1 = float("nan")
         scheduler.step()
 
         for key, val in (("train_loss", tr["total"]), ("ce", tr["ce"]), ("domain", tr["domain"]),
                          ("supcon", tr["supcon"]), ("domain_acc", tr["domain_acc"]),
-                         ("heldout_loss", held_loss), ("heldout_f1", held_f1)):
+                         ("heldout_f1", held_f1)):
             history[key].append(val)
 
         details = f"ce={tr['ce']:.4f}"
         if disc is not None:
             details += f" dom={tr['domain']:.4f} lam_d={lam_d:.3f} acc={tr['domain_acc']:.3f}"
         details += f" supcon={tr['supcon']:.4f} lam_s={lam_s:.2f} anchors={tr['anchors']}"
-        print(f"{epoch:>4} {tr['total']:>8.4f} {held_loss:>8.4f} {held_f1:>7.4f}  {details}")
+        print(f"{epoch:>4} {tr['total']:>8.4f} {held_f1:>7.4f}  {details}")
 
     torch.save(model.state_dict(), out_dir / "model_final.pt")
     if disc is not None:
