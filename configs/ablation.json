@@ -1,47 +1,46 @@
 {
-  "_note": "= run_train_test_5_4_ablation_dann_balance_domain.py",
   "homes": [
     {
-      "name": "koyama_an_2",
-      "labeled_tsv": "./realhome_label_project/episode_clean/koyama_an_2_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/koyama_an_2_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_koyama_an_2.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/database-DESKTOP-0D3M52K koyama-an 2回目.db"
+      "name": "home_1",
+      "labeled_tsv": "dataset/metadata/home1_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home1_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home1.tsv",
+      "feature_dir": "database-home1.db"
     },
     {
-      "name": "takaki_teraoka_2",
-      "labeled_tsv": "./realhome_label_project/episode_clean/takaki_teraoka_2_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/takaki_teraoka_2_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_takaki_teraoka_2.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/database-dt-n06ieir takaki teraoka 2回目.db"
+      "name": "home_2",
+      "labeled_tsv": "dataset/metadata/home2_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home2_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home2.tsv",
+      "feature_dir": "database-home2.db"
     },
     {
-      "name": "sqlite_JAXA_MINISFORUM",
-      "labeled_tsv": "./realhome_label_project/episode_clean/sqlite_JAXA_MINISFORUM_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/sqlite_JAXA_MINISFORUM_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_sqlite_JAXA_MINISFORUM.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/sqlite JAXA MINISFORUM銀.db"
+      "name": "home_3",
+      "labeled_tsv": "dataset/metadata/home3_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home3_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home3.tsv",
+      "feature_dir": "database-home3.db"
     },
     {
-      "name": "engawa_MINISFORUM_1",
-      "labeled_tsv": "./realhome_label_project/episode_clean/engawa_MINISFORUM_1_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/engawa_MINISFORUM_1_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_engawa_MINISFORUM_1.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/database-engawa-MINISFORUM黒 1回目.db"
+      "name": "home_4",
+      "labeled_tsv": "dataset/metadata/home4_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home4_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home4.tsv",
+      "feature_dir": "database-home4.db"
     },
     {
-      "name": "koyama_an_1",
-      "labeled_tsv": "./realhome_label_project/episode_clean/koyama_an_1_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/koyama_an_1_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_koyama_an_1.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/database-DESKTOP-0D3M52K koyama-an 1回目.db"
+      "name": "home_5",
+      "labeled_tsv": "dataset/metadata/home5_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home5_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home5.tsv",
+      "feature_dir": "database-home5.db"
     },
     {
-      "name": "takaki_teraoka_1",
-      "labeled_tsv": "./realhome_label_project/episode_clean/takaki_teraoka_1_labeled.tsv",
-      "unlabeled_tsv": "./realhome_label_project/takaki_teraoka_1_unlabeled.tsv",
-      "batch_index_tsv": "./realhome_label_project/clap-vectors/output/batch_index_takaki_teraoka_1.tsv",
-      "feature_dir": "./realhome_label_project/clap-vectors/output/database-dt-n06ieir takaki teraoka 1回目.db"
+      "name": "home_6",
+      "labeled_tsv": "dataset/metadata/home6_labeled.tsv",
+      "unlabeled_tsv": "dataset/metadata/home6_unlabeled.tsv",
+      "batch_index_tsv": "dataset/metadata/batch_index_home6.tsv",
+      "feature_dir": "database-home6.db"
     }
   ],
   "heldout": null,
