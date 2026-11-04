@@ -7,7 +7,6 @@
     python main.py --supcon-selection random_matched  # random, same counts as selective
 
 The domain-adaptation ablations (baseline / DANN / CDAN / CDAN-E, no SupCon)
-are run with main_ablation.py.
 """
 import argparse
 import json
