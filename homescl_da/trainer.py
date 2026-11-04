@@ -176,12 +176,14 @@ def run_fold(cfg, heldout, segments, unlabeled, store, out_root=None):
     if cfg.ablation != "baseline":
         target_items = []
         if cfg.domain_mode == "multi_source_target":
-            target_items = [{"home": s["home"], "batch_no": s["batch_no"], "indices": s["indices"]}
-                            for s in target]
+            if cfg.target_heldout_audio:
+                target_items = [{"home": s["home"], "batch_no": s["batch_no"],
+                                 "indices": s["indices"]} for s in target]
+            n_heldout_audio = len(target_items)
             if cfg.use_unlabeled_target:
                 target_items += unlabeled.get(heldout, [])
-            print(f"  [domain] target windows: {len(target)} labeled-boundary + "
-                  f"{len(target_items) - len(target)} unlabeled")
+            print(f"  [domain] target windows: {n_heldout_audio} held-out labeled-audio "
+                  f"(labels discarded) + {len(target_items) - n_heldout_audio} unlabeled")
         domain_iter = build_domain_stream(cfg, source, source_names, target_items, store)
 
     cw = class_weights(train_set, cfg.classes, cfg.weight_cap).to(device)
