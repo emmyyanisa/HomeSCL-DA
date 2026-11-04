@@ -1,5 +1,4 @@
 {
-  "_note": "MLP-only baseline: same settings as the MLP-BiGRU baseline in ablation.json, without the BiGRU",
   "homes": [
     {
       "name": "home_1",
