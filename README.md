@@ -91,10 +91,10 @@ python main.py --config configs/default.json
 python main.py --heldout home_6
 
 # domain-adaptation ablations (the activity architecture is identical in all four)
-python main.py --ablation baseline
-python main.py --ablation dann
-python main.py --ablation cdan
-python main.py --ablation cdan_e
+python main_ablation.py --config configs/ablation.json --ablation baseline
+python main_ablation.py --config configs/ablation.json --ablation dann
+python main_ablation.py --config configs/ablation.json --ablation cdan
+python main_ablation.py --config configs/ablation.json --ablation cdan_e
 
 # domain definition
 python main.py --domain-mode multi_source_target   # source homes + unlabeled held-out home
