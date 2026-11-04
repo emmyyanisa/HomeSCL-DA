@@ -1,7 +1,4 @@
 """CAT (contrastive adversarial training) on DANN, leave-one-home-out.
-
-Replaces run_train_test_5_4_CAT_episode_clean.py.
-
 Example:
     python main_cat.py --config configs/cat.json
 """
