@@ -2,7 +2,7 @@
 
     python main.py                          # HomeSCL-DA: selective cross-home SupCon + DANN
     python main.py --no-da                  # HomeSCL without domain adaptation (SupCon only)
-    python main.py --heldout home_6         # one fold only
+    python main.py --heldout home_6         # one home only
     python main.py --supcon-selection standard        # SupCon on all source segments
     python main.py --supcon-selection random_matched  # random, same counts as selective
 
