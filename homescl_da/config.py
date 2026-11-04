@@ -56,6 +56,9 @@ class Config:
     ablation: str = "dann"
     domain_mode: str = "multi_source_target"
     use_unlabeled_target: bool = True
+    # Also use the held-out home's labeled-episode audio (labels discarded) as
+    # target audio. false = unlabeled_tsv audio only (CEteacher_2 script).
+    target_heldout_audio: bool = True
     domain_hidden: int = 64
     domain_dropout: float = 0.3                  # discriminator dropout (CDA script used 0.5)
     domain_lambda_max: float = 1.0
