@@ -2,6 +2,7 @@
   "homes": [
     {
       "name": "home_1",
+      "sort_order": 3,
       "labeled_tsv": "dataset/metadata/home1_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home1_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home1.tsv",
@@ -9,6 +10,7 @@
     },
     {
       "name": "home_2",
+      "sort_order": 6,
       "labeled_tsv": "dataset/metadata/home2_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home2_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home2.tsv",
@@ -16,6 +18,7 @@
     },
     {
       "name": "home_3",
+      "sort_order": 4,
       "labeled_tsv": "dataset/metadata/home3_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home3_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home3.tsv",
@@ -23,6 +26,7 @@
     },
     {
       "name": "home_4",
+      "sort_order": 1,
       "labeled_tsv": "dataset/metadata/home4_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home4_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home4.tsv",
@@ -30,6 +34,7 @@
     },
     {
       "name": "home_5",
+      "sort_order": 2,
       "labeled_tsv": "dataset/metadata/home5_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home5_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home5.tsv",
@@ -37,6 +42,7 @@
     },
     {
       "name": "home_6",
+      "sort_order": 5,
       "labeled_tsv": "dataset/metadata/home6_labeled.tsv",
       "unlabeled_tsv": "dataset/metadata/home6_unlabeled.tsv",
       "batch_index_tsv": "dataset/metadata/batch_index_home6.tsv",
